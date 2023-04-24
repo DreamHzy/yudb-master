@@ -1,0 +1,18 @@
+2021-11-08 22:52:39,459 INFO (StartupInfoLogger.java:50)- Starting YudbAppApplication on SKY-20191029CLM with PID 9728 (E:\work\yudb\yudb-app\target\classes started by Administrator in E:\work\yudb)
+2021-11-08 22:52:39,465 INFO (SpringApplication.java:651)- The following profiles are active: prod
+2021-11-08 22:52:55,136 INFO (StartupInfoLogger.java:50)- Starting YudbAppApplication on SKY-20191029CLM with PID 11536 (E:\work\yudb\yudb-app\target\classes started by Administrator in E:\work\yudb)
+2021-11-08 22:52:55,138 INFO (SpringApplication.java:651)- The following profiles are active: prod
+2021-11-08 22:52:56,567 INFO (RepositoryConfigurationDelegate.java:244)- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-11-08 22:52:56,571 INFO (RepositoryConfigurationDelegate.java:126)- Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-11-08 22:52:56,767 INFO (RepositoryConfigurationDelegate.java:182)- Finished Spring Data repository scanning in 135ms. Found 0 repository interfaces.
+2021-11-08 22:52:57,039 WARN (ClassPathMapperScanner.java:239)- Skipping MapperFactoryBean with name 'dictMapper' and 'com.yunzyq.yudbapp.dao.DictMapper' mapperInterface. Bean already defined with the same name!
+2021-11-08 22:52:57,040 WARN (ClassPathMapperScanner.java:239)- Skipping MapperFactoryBean with name 'myAgentMapper' and 'com.yunzyq.yudbapp.dao.MyAgentMapper' mapperInterface. Bean already defined with the same name!
+2021-11-08 22:52:57,040 WARN (ClassPathMapperScanner.java:166)- No MyBatis mapper was found in '[com.yunzyq.yudbapp]' package. Please check your configuration.
+2021-11-08 22:52:57,374 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'redisConfig' of type [com.yunzyq.yudbapp.redis.RedisConfig$$EnhancerBySpringCGLIB$$955d0fe6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-08 22:52:57,384 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b0e5cf3f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-08 22:52:57,879 INFO (TomcatWebServer.java:90)- Tomcat initialized with port(s): 8080 (http)
+2021-11-08 22:52:57,906 INFO (DirectJDKLog.java:173)- Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-08 22:52:57,917 INFO (DirectJDKLog.java:173)- Starting service [Tomcat]
+2021-11-08 22:52:57,917 INFO (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-11-08 22:52:58,199 INFO (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2021-11-08 22:52:58,199 INFO (ServletWebServerApplicationContext.java:284)- Root WebApplicationContext: initialization completed in 3010 ms

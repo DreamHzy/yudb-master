@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ynzyq.yudbadmin.dao.business.dao.YgEmployeeBankMapper" >
+  <resultMap id="BaseResultMap" type="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_NAME" property="employeeName" jdbcType="VARCHAR" />
+    <result column="BANK_ACCOUNT" property="bankAccount" jdbcType="INTEGER" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="BANK_BRANCH" property="bankBranch" jdbcType="VARCHAR" />
+    <result column="DEPOSITARY_BANK" property="depositaryBank" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_OPENING_ADDRESS" property="accountOpeningAddress" jdbcType="VARCHAR" />
+    <result column="UNIONPAY_NUMBER" property="unionpayNumber" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, EMPLOYEE_ID, EMPLOYEE_NAME, BANK_ACCOUNT, ACCOUNT_NAME, BANK_BRANCH, DEPOSITARY_BANK, 
+    ACCOUNT_OPENING_ADDRESS, UNIONPAY_NUMBER, REMARK, CREATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBankExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yg_employee_bank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yg_employee_bank
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yg_employee_bank
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBankExample" >
+    delete from yg_employee_bank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into yg_employee_bank (EMPLOYEE_ID, EMPLOYEE_NAME, BANK_ACCOUNT, 
+      ACCOUNT_NAME, BANK_BRANCH, DEPOSITARY_BANK, 
+      ACCOUNT_OPENING_ADDRESS, UNIONPAY_NUMBER, 
+      REMARK, CREATE_TIME)
+    values (#{employeeId,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, #{bankAccount,jdbcType=INTEGER}, 
+      #{accountName,jdbcType=VARCHAR}, #{bankBranch,jdbcType=VARCHAR}, #{depositaryBank,jdbcType=VARCHAR}, 
+      #{accountOpeningAddress,jdbcType=VARCHAR}, #{unionpayNumber,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into yg_employee_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        EMPLOYEE_ID,
+      </if>
+      <if test="employeeName != null" >
+        EMPLOYEE_NAME,
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT,
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME,
+      </if>
+      <if test="bankBranch != null" >
+        BANK_BRANCH,
+      </if>
+      <if test="depositaryBank != null" >
+        DEPOSITARY_BANK,
+      </if>
+      <if test="accountOpeningAddress != null" >
+        ACCOUNT_OPENING_ADDRESS,
+      </if>
+      <if test="unionpayNumber != null" >
+        UNIONPAY_NUMBER,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null" >
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranch != null" >
+        #{bankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="depositaryBank != null" >
+        #{depositaryBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOpeningAddress != null" >
+        #{accountOpeningAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unionpayNumber != null" >
+        #{unionpayNumber,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBankExample" resultType="java.lang.Integer" >
+    select count(*) from yg_employee_bank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update yg_employee_bank
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeId != null" >
+        EMPLOYEE_ID = #{record.employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeName != null" >
+        EMPLOYEE_NAME = #{record.employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccount != null" >
+        BANK_ACCOUNT = #{record.bankAccount,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountName != null" >
+        ACCOUNT_NAME = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankBranch != null" >
+        BANK_BRANCH = #{record.bankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depositaryBank != null" >
+        DEPOSITARY_BANK = #{record.depositaryBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountOpeningAddress != null" >
+        ACCOUNT_OPENING_ADDRESS = #{record.accountOpeningAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionpayNumber != null" >
+        UNIONPAY_NUMBER = #{record.unionpayNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update yg_employee_bank
+    set ID = #{record.id,jdbcType=INTEGER},
+      EMPLOYEE_ID = #{record.employeeId,jdbcType=VARCHAR},
+      EMPLOYEE_NAME = #{record.employeeName,jdbcType=VARCHAR},
+      BANK_ACCOUNT = #{record.bankAccount,jdbcType=INTEGER},
+      ACCOUNT_NAME = #{record.accountName,jdbcType=VARCHAR},
+      BANK_BRANCH = #{record.bankBranch,jdbcType=VARCHAR},
+      DEPOSITARY_BANK = #{record.depositaryBank,jdbcType=VARCHAR},
+      ACCOUNT_OPENING_ADDRESS = #{record.accountOpeningAddress,jdbcType=VARCHAR},
+      UNIONPAY_NUMBER = #{record.unionpayNumber,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank" >
+    update yg_employee_bank
+    <set >
+      <if test="employeeId != null" >
+        EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null" >
+        EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT = #{bankAccount,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranch != null" >
+        BANK_BRANCH = #{bankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="depositaryBank != null" >
+        DEPOSITARY_BANK = #{depositaryBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountOpeningAddress != null" >
+        ACCOUNT_OPENING_ADDRESS = #{accountOpeningAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unionpayNumber != null" >
+        UNIONPAY_NUMBER = #{unionpayNumber,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank" >
+    update yg_employee_bank
+    set EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+      EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+      BANK_ACCOUNT = #{bankAccount,jdbcType=INTEGER},
+      ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      BANK_BRANCH = #{bankBranch,jdbcType=VARCHAR},
+      DEPOSITARY_BANK = #{depositaryBank,jdbcType=VARCHAR},
+      ACCOUNT_OPENING_ADDRESS = #{accountOpeningAddress,jdbcType=VARCHAR},
+      UNIONPAY_NUMBER = #{unionpayNumber,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectEmployee" resultType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank">
+    SELECT y1.EMPLOYEE_ID AS employeeId,
+           y1.EMPLOYEE_NAME AS employeeName,
+           y1.BANK_ACCOUNT AS bankAccount ,
+           y1.ACCOUNT_NAME AS accountName,
+           y1.BANK_BRANCH AS bankBranch,
+           y1.DEPOSITARY_BANK AS depositaryBank,
+           y1.ACCOUNT_OPENING_ADDRESS AS accountOpeningAddress,
+           y1.UNIONPAY_NUMBER AS unionpayNumber,
+           y1.REMARK AS remark
+           FROM yg_employee_bank y1
+    <where>
+      <if test="keyWords !=null and keyWords!=''">OR y1.EMPLOYEE_NAME LIKE concat('%', #{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.BANK_ACCOUNT LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.ACCOUNT_NAME LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.BANK_BRANCH LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.DEPOSITARY_BANK LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.ACCOUNT_OPENING_ADDRESS LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.UNIONPAY_NUMBER LIKE concat('%',#{keyWords}, '%') </if>
+    </where>
+  </select>
+
+  <select id="selectEmployeeQueryId" resultType="com.ynzyq.yudbadmin.dao.business.model.YgEmployeeBank">
+    SELECT
+      *
+    FROM
+         yg_employee_bank
+    where EMPLOYEE_ID = #{employeeId}
+  </select>
+
+  <select id="selectEmployees" resultType="com.ynzyq.yudbadmin.dao.evaluate.vo.EmployeeVO">
+    SELECT
+    y1.ID AS id,
+    y1.EMPLOYEE_ID AS employeeId,
+    y1.EMPLOYEE_NAME AS employeeName,
+    y1.BANK_ACCOUNT AS bankAccount ,
+    y1.ACCOUNT_NAME AS accountName,
+    y1.BANK_BRANCH AS bankBranch,
+    y1.DEPOSITARY_BANK AS depositaryBank,
+    y1.ACCOUNT_OPENING_ADDRESS AS accountOpeningAddress,
+    y1.UNIONPAY_NUMBER AS unionpayNumber,
+    y1.REMARK AS remark
+    FROM yg_employee_bank y1
+    <where>
+      <if test="keyWords !=null and keyWords!=''">OR y1.EMPLOYEE_NAME LIKE concat('%', #{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.BANK_ACCOUNT LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.ACCOUNT_NAME LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.BANK_BRANCH LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.DEPOSITARY_BANK LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.ACCOUNT_OPENING_ADDRESS LIKE concat('%',#{keyWords}, '%') </if>
+      <if test="keyWords !=null and keyWords!=''">OR y1.UNIONPAY_NUMBER LIKE concat('%',#{keyWords}, '%') </if>
+    </where>
+  </select>
+</mapper>

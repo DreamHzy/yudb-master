@@ -1,0 +1,98 @@
+# 项目信息配置
+project:
+  name: app
+  version: 1.0.0
+  env: production
+# WEB服务器配置
+server:
+  port: 8080
+  tomcat:
+    max-http-header-size: 8192
+# session设置
+session:
+  # 过期时间(单位: ms)
+  timeout: 7200000
+
+spring:
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://rm-2zenv0qunwv18r7gnso.mysql.rds.aliyuncs.com:3306/yudb?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: admin123
+    password: Admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  #文件配置
+  servlet:
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 1024MB #最大请求文件的大小
+      max-file-size: 20MB #设置单个文件最大长度
+      file-size-threshold: 20MB #当文件达到多少时进行磁盘写入
+  # JSON返回配置
+  jackson:
+    # 默认时区
+    time-zone: GMT+8
+    # 默认日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 127.0.0.1
+    #    host: 39.106.48.90
+    #    port: 6379
+    port: 3389
+    timeout: 300
+    database: 3
+    password: iahanx&1818a
+    pool:
+    minIdle: 1
+    maxIdle: 10
+    maxWait: 3
+    maxActive: 8
+
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# Swagger配置
+swagger:
+  host:
+  title: ${project.name}接口文档
+  description: ${project.name}接口文档
+  enabled: true
+  # 禁用swagger时的重定向地址
+  redirect-uri: /
+
+# 日志配置
+logback:
+  level: INFO
+  appender: ${project.env}
+# dao层的日志设置为debug，方便查看sql
+logging:
+  level:
+    com.yunzyq.yudbapp.dao: debug
+
+imageUrl: https://yudianbao.ynzyqpp.cn
+
+
+#
+#AppID: wx86531cf5d7365328
+#AppSecret: ad268dc6ce1b5f104deac0815869e722
+
+AppID: wx0192083639f5f9d6
+AppSecret: 8411425b804817003ceeb507cfdb2093
+
+certPath: /usr/local/java/apiclient_cert.p12
+
+
+sandsdk:
+  url: https://cashier.sandpay.com.cn/gateway/api
+  mid: 6888800041471
+  plMid:
+  signCert:
+    pat: /usr/local/java/鱼店宝私钥.pfx
+    pwd: f4k9f5w7f8g4er26
+  sandCert:
+    path: /usr/local/java/sand.cer
+
